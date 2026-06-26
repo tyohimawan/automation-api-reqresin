@@ -63,8 +63,6 @@ export const CREATE_USER_CASES: CreateUserCase[] = [
   }
 ];
 
-// ─── Step 2 — Get All Users Paged ────────────────────────────────────────────
-
 export interface GetAllUsersExpected {
   status: number;
   page: number;
@@ -80,7 +78,6 @@ export interface GetAllUsersCase extends BaseCase {
 }
 
 export const GET_ALL_USERS_CASES: GetAllUsersCase[] = [
-  // ── Positive ──
   {
     description: 'should return 200 with non-empty user list on page 2',
     type: 'positive',
@@ -105,7 +102,6 @@ export const GET_ALL_USERS_CASES: GetAllUsersCase[] = [
     page: 2,
     expected: { status: 200, page: 2, dataIsEmpty: false, hasSupport: true },
   },
-  // ── Negative ──
   {
     description: 'should return 200 with empty data array for out-of-range page 999',
     type: 'negative',
@@ -119,8 +115,6 @@ export const GET_ALL_USERS_CASES: GetAllUsersCase[] = [
     expected: { status: 200, page: 999, dataIsEmpty: true, hasMetaFields: true },
   },
 ];
-
-// ─── Step 3 — Update User ─────────────────────────────────────────────────────
 
 export interface UpdateUserExpected {
   status: number;
@@ -166,8 +160,6 @@ export const UPDATE_USER_CASES: UpdateUserCase[] = [
   },
 ];
 
-// ─── Step 4 — Get User By Id ──────────────────────────────────────────────────
-
 export interface GetUserByIdExpected {
   status: number;
   userId?: number;
@@ -182,7 +174,6 @@ export interface GetUserByIdCase extends BaseCase {
 }
 
 export const GET_USER_BY_ID_CASES: GetUserByIdCase[] = [
-  // ── Positive ──
   {
     description: 'should return 200 with user data for id 2',
     type: 'positive',
@@ -214,8 +205,6 @@ export const GET_USER_BY_ID_CASES: GetUserByIdCase[] = [
     expected: { status: 404, emptyBody: true },
   },
 ];
-
-// ─── Step 5 — Delete User ─────────────────────────────────────────────────────
 
 export interface DeleteUserExpected {
   status: number;

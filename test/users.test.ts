@@ -9,9 +9,6 @@ import {
   DELETE_USER_CASES,
 } from './testCases/user.testcases';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Helper — splits a flat case array into positive / negative groups
-// ─────────────────────────────────────────────────────────────────────────────
 function splitByType<T extends { type: string }>(cases: T[]) {
   return {
     positive: cases.filter((c) => c.type === 'positive'),
@@ -19,13 +16,8 @@ function splitByType<T extends { type: string }>(cases: T[]) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
 
-  // ───────────────────────────────────────────────────────────────
-  // STEP 1 — Create a New User  POST /api/users
-  // ───────────────────────────────────────────────────────────────
   describe('Step 1: Create a New User  [POST /api/users]', () => {
     const { positive, negative } = splitByType(CREATE_USER_CASES);
 
@@ -52,7 +44,6 @@ describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
         });
       });
 
-      // Standalone — requires two parallel calls, not representable as a single case
       it('should generate a unique id for each creation request', async () => {
         const [r1, r2] = await Promise.all([
           UserService.createUser({ name: 'User A', job: 'Tester' }),
@@ -86,9 +77,6 @@ describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // STEP 2 — Get All Users Paged  GET /api/users?page=2
-  // ───────────────────────────────────────────────────────────────
   describe('Step 2: Get All Users Paged  [GET /api/users?page=2]', () => {
     const { positive, negative } = splitByType(GET_ALL_USERS_CASES);
 
@@ -148,9 +136,6 @@ describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // STEP 3 — Update User  PUT /api/users/2
-  // ───────────────────────────────────────────────────────────────
   describe('Step 3: Update User  [PUT /api/users/2]', () => {
     const { positive, negative } = splitByType(UPDATE_USER_CASES);
 
@@ -193,9 +178,6 @@ describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // STEP 4 — View Detail Single User  GET /api/users/2
-  // ───────────────────────────────────────────────────────────────
   describe('Step 4: View Detail Single User  [GET /api/users/2]', () => {
     const { positive, negative } = splitByType(GET_USER_BY_ID_CASES);
 
@@ -243,9 +225,6 @@ describe('Master Data Users — E2E API Test Suite (reqres.in)', () => {
     });
   });
 
-  // ───────────────────────────────────────────────────────────────
-  // STEP 5 — Delete User  DELETE /api/users/2
-  // ───────────────────────────────────────────────────────────────
   describe('Step 5: Delete User  [DELETE /api/users/2]', () => {
     const { positive, negative } = splitByType(DELETE_USER_CASES);
 
